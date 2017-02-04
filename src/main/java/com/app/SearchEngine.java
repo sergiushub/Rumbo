@@ -65,13 +65,13 @@ public class SearchEngine {
 			throw new Exception("Airport of destination Not Found.");
 		}
 
-		// Comprobamos si existe una conexión entre el aeropuerto de origen y el
+		// Comprobamos si existe una conexion entre el aeropuerto de origen y el
 		// aeropuerto destino
 		ArrayList<FlightConnection> flightConnections = checkFlightConnections(airportOrigin, airportDestination);
 
 		ArrayList<SearchResult> searchResults = null;
 		
-		//Comprobamos que existe algún vuelo
+		//Comprobamos que existe algun vuelo
 		if (!flightConnections.isEmpty()) {
 			
 			//Creamos un nuevo array de resultados de busqueda
@@ -134,7 +134,7 @@ public class SearchEngine {
 }
 
 	/**
-	 * Metodo que calcula el numero de días entre dos fechas
+	 * Metodo que calcula el numero de dias entre dos fechas
 	 * 
 	 * @param today Hoy
 	 * @param departureDate Fecha del vuelo
@@ -156,7 +156,7 @@ public class SearchEngine {
 		
 		for (int i = 0; i < this.airlines.size(); i++) {
 			
-			//Sacamos el código IATA de la areolinea
+			//Sacamos el codigo IATA de la areolinea
 			airlineIataCode = this.airlines.get(i).getIataCode();
 			//Cogemos los dos primeros caracteres del vuelo 
 			code = flightAux.getAirline().substring(0, 2);
@@ -171,8 +171,8 @@ public class SearchEngine {
 	}
 
 	/**
-	 * Método que devuelve los vuelos disponibles entre dos aeropuertos
-	 * Si no existe devuelve un Array vacío
+	 * Metodo que devuelve los vuelos disponibles entre dos aeropuertos
+	 * Si no existe devuelve un Array vacio
 	 * 
 	 * @param airportOrigin
 	 * @param airportDestination
@@ -190,7 +190,7 @@ public class SearchEngine {
 					&& this.flightConnections.get(i).getArrivalAirport()
 							.compareTo(airportDestination.getIataCode()) == 0) {
 				
-				//Si coincide el origen y el destino añadimos a nuestra lista de vuelos
+				//Si coincide el origen y el destino aniadimos a nuestra lista de vuelos
 				arrayConnections.add(flightConnections.get(i));
 			}
 		}
@@ -201,7 +201,7 @@ public class SearchEngine {
 	/**
 	 * Metodo que devuelve el Objeto Airport o Nulo en caso de no existir en los datos proporcionados
 	 * 
-	 * @param airportOrigin Código del aeropuerto
+	 * @param airportOrigin Codigo del aeropuerto
 	 * @return Airport o nulo
 	 */
 	private Airport searchAirport(String airportOrigin) {
