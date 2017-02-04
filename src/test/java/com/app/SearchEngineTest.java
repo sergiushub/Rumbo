@@ -11,6 +11,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.data.FlightConnection;
+
 public class SearchEngineTest {
 
 	@Test
@@ -26,18 +28,19 @@ public class SearchEngineTest {
 	private void inputData() {
 		String line;
 		FileReader f;
-		List flightConnections = new ArrayList<String[]>();
+		List flightConnections = new ArrayList<FlightConnection>();
 		try {
 			f = new FileReader("src/test/resources/data/FlightConnectionPrice.dat");
 			BufferedReader b = new BufferedReader(f);
 			while ((line = b.readLine()) != null) {
 				String[] lineData = line.split(",");
 				
-				flightConnections.add(lineData);
+				flightConnections.add(new FlightConnection(lineData[0],lineData[1],lineData[2],Double.valueOf(lineData[3])));
 			}
 			
 			for(int i=0; i< flightConnections.size(); i++) {
-				System.out.println(flightConnections.get(i));
+				
+				System.out.println(flightConnections.get(i).toString());
 			}
 			
 			b.close();
