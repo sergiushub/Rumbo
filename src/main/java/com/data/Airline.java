@@ -1,12 +1,12 @@
 package com.data;
 
-public class AirLine {
+public class Airline {
 	
 	public String iataCode;
 	public String airlineName;
 	public Double infantPrice;
 	
-	public AirLine(String iataCode, String airlineName, Double infantPrice) {
+	public Airline(String iataCode, String airlineName, Double infantPrice) {
 		this.iataCode = iataCode;
 		this.airlineName = airlineName;
 		this.infantPrice = infantPrice;
