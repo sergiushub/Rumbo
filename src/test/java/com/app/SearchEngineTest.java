@@ -25,7 +25,7 @@ public class SearchEngineTest {
 		String cadena;
 		FileReader f;
 		try {
-			f = new FileReader("../test/resources/com/data/FlightConnectionPrice.dat");
+			f = new FileReader("src/test/resources/data/FlightConnectionPrice.dat");
 			BufferedReader b = new BufferedReader(f);
 			while ((cadena = b.readLine()) != null) {
 				System.out.println(cadena);
