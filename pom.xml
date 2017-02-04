@@ -5,6 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>FlightSearch</name>
   <description>Test de aptitudes Java para Rumbo</description>
+  
   <dependencies>  
   <dependency>
     <groupId>junit</groupId>
