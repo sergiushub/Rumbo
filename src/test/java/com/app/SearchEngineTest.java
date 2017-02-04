@@ -29,7 +29,6 @@ public class SearchEngineTest {
 	@Test
 	public void test1() {
 		
-		//Comment
 		SearchEngine sEngine = new SearchEngine();
 		ArrayList<SearchResult> sResult = new ArrayList<SearchResult>();
 		
