@@ -30,7 +30,10 @@ public class Airline {
 	public void setInfantPrice(Double infantPrice) {
 		this.infantPrice = infantPrice;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Airline [iataCode=" + iataCode + ", airlineName=" + airlineName + ", infantPrice=" + infantPrice + "]";
+	}
 
 }
