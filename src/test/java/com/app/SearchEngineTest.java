@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -22,14 +24,22 @@ public class SearchEngineTest {
 	}
 
 	private void inputData() {
-		String cadena;
+		String line;
 		FileReader f;
+		List flightConnections = new ArrayList<String[]>();
 		try {
 			f = new FileReader("src/test/resources/data/FlightConnectionPrice.dat");
 			BufferedReader b = new BufferedReader(f);
-			while ((cadena = b.readLine()) != null) {
-				System.out.println(cadena);
+			while ((line = b.readLine()) != null) {
+				String[] lineData = line.split(",");
+				
+				flightConnections.add(lineData);
 			}
+			
+			for(int i=0; i< flightConnections.size(); i++) {
+				System.out.println(flightConnections.get(i));
+			}
+			
 			b.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
