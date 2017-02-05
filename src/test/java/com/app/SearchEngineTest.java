@@ -138,6 +138,37 @@ public class SearchEngineTest {
 		
 	}
 	
+	/**
+	 * Test 4 - 1 adultos de Paris a Frankfurt dentro de 2 dias 
+	 */
+	@Test
+	public void test4() {
+
+		SearchEngine sEngine = new SearchEngine();
+		ArrayList<SearchResult> sResult = new ArrayList<SearchResult>();
+		
+		//Insertamos los datos para la Test
+		inputData(sEngine);
+		
+		try {
+			
+			//Calculamos 15 dias a partir de hoy
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Date());
+			calendar.add(Calendar.DAY_OF_YEAR, 2);			 
+			
+			sResult = sEngine.searchFlight("CDG", "FRA", calendar.getTime(), 1, 0, 0);
+
+			assertEquals("Test 3 - Opcion 1", null, sResult);
+			
+		} catch (ParseException e) {
+			fail(e.getMessage());
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+		
+	}
+	
 	private void inputData(SearchEngine sEngine) {
 
 		String line;

@@ -1,6 +1,5 @@
 package com.app;
 
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
@@ -126,7 +125,7 @@ public class SearchEngine {
 	 * @param d Importe a redondar
 	 * @return Importe redondeado
 	 */
-	public double redondear(double d) {
+	private double redondear(double d) {
 	    
 	    d = d * 100;
 	    long tmp = Math.round(d);
