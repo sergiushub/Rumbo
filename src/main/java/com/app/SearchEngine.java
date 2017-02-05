@@ -2,9 +2,9 @@ package com.app;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import com.data.Airline;
 import com.data.Airport;
@@ -45,7 +45,7 @@ public class SearchEngine {
 			throw new Exception("No imput for destination airport.");
 		}
 		// Comprobamos que la fecha introducida no es anterior a hoy
-		if (departureDate == null || departureDate.before(today)) {
+		if (departureDate == null || checkDaysBetween(today,departureDate) < 0) {
 			throw new Exception("Date of depature has to be equal or greater than today.");
 		}
 		// Comprobamos que se ha introducido un numero correcto de pasajeros
@@ -144,10 +144,19 @@ public class SearchEngine {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date todayNoHours = sdf.parse(sdf.format(new Date()));
+		Date departureDateNoHours = sdf.parse(sdf.format(departureDate));
 		
-		return ChronoUnit.DAYS.between(todayNoHours.toInstant(),departureDate.toInstant());
+		//return ChronoUnit.DAYS.between(todayNoHours.toInstant(),departureDate.toInstant());
+		long diff = departureDateNoHours.getTime() - todayNoHours.getTime();
+		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 	}
 
+	/**
+	 * Metodo que busca el precio de una determinada compania para un bebe
+	 * 
+	 * @param flightAux
+	 * @return
+	 */
 	private double searchInfantPrice(FlightConnection flightAux) {
 
 		String code;

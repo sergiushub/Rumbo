@@ -223,9 +223,10 @@ public class SearchEngineTest {
 		thrown.expectMessage("Date of depature has to be equal or greater than today.");
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
-		calendar.add(Calendar.DAY_OF_YEAR, 0);		
+		calendar.add(Calendar.DAY_OF_YEAR, -1);		
 		sEngine.searchFlight("XXX", "XXX", calendar.getTime(), 0, 0, 0);
 	}
+	
 	
 	private void inputData(SearchEngine sEngine) {
 
