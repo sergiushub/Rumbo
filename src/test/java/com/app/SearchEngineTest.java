@@ -28,56 +28,87 @@ public class SearchEngineTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
+	/**
+	 * Test Input 1 - aeropuerto origen a null
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void TestNoInputOriginAirport1() throws Exception {
 		
 		SearchEngine sEngine = new SearchEngine();
 		
 		thrown.expect(Exception.class);
-		thrown.expectMessage("No imput for origin airport.");
+		thrown.expectMessage("No Input for origin airport.");
 		sEngine.searchFlight(null, "XXX", new Date(), 1, 0, 0);
 	}
 	
+	/**
+	 * Test Input 2 - aeropuerto origen vacio
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void TestNoInputOriginAirport2() throws Exception {
 		
 		SearchEngine sEngine = new SearchEngine();
 		
 		thrown.expect(Exception.class);
-		thrown.expectMessage("No imput for origin airport.");
+		thrown.expectMessage("No Input for origin airport.");
 		sEngine.searchFlight("", "XXX", new Date(), 1, 0, 0);
 	}
 	
+	
+	/**
+	 * Test Input 3 - aeropuerto destino a null
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void TestNoInputDestinationAirport1() throws Exception {
 		
 		SearchEngine sEngine = new SearchEngine();
 		
 		thrown.expect(Exception.class);
-		thrown.expectMessage("No imput for destination airport.");
+		thrown.expectMessage("No Input for destination airport.");
 		sEngine.searchFlight("XXX", null, new Date(), 1, 0, 0);
 	}
 
+	/**
+	 * Test Input 4 - aeropuerto destino vacio
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void TestNoInputDestinationAirport2() throws Exception {
 		
 		SearchEngine sEngine = new SearchEngine();
 		
 		thrown.expect(Exception.class);
-		thrown.expectMessage("No imput for destination airport.");
+		thrown.expectMessage("No Input for destination airport.");
 		sEngine.searchFlight("XXX", "", new Date(), 1, 0, 0);
 	}
 	
+	/**
+	 * Test Input 5 - fecha de salida a null
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void TestDateNoImput() throws Exception {
 		
 		SearchEngine sEngine = new SearchEngine();
 		
 		thrown.expect(Exception.class);
-		thrown.expectMessage("No imput for departure date.");
+		thrown.expectMessage("No Input for departure date.");
 		sEngine.searchFlight("XXX", "XXX", null, 1, 0, 0);
 	}
 	
+	/**
+	 * Test Input 6 - Fecha de salida menor a hoy
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void TestDateBefore() throws Exception {
 		
@@ -91,6 +122,12 @@ public class SearchEngineTest {
 		sEngine.searchFlight("XXX", "XXX", calendar.getTime(), 1, 0, 0);
 	}
 	
+	
+	/**
+	 * Test Input 7 - Numero de pasajeros 0
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void TestNumberOfPassengers() throws Exception {
 		
@@ -104,6 +141,11 @@ public class SearchEngineTest {
 		sEngine.searchFlight("XXX", "XXX", calendar.getTime(), 0, 0, 0);
 	}
 	
+	/**
+	 * Test Data Integrity 1 - El aeropuerto de origen no existe
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void TestAirportOriginExists() throws Exception {
 		
@@ -117,6 +159,11 @@ public class SearchEngineTest {
 		sEngine.searchFlight("XXX", "MAD", calendar.getTime(), 1, 0, 0);
 	}
 	
+	/**
+	 * Test Data Integrity 2 - El aeropuerto de destino no existe
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void TestAirportDestinationExists() throws Exception {
 		
