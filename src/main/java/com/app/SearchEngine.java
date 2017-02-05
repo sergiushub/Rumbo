@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 import com.data.Airline;
 import com.data.Airport;
 import com.data.FlightConnection;
-import com.data.SearchResult;
 
 public class SearchEngine {
 
