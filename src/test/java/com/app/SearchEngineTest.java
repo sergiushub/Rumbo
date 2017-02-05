@@ -36,7 +36,7 @@ public class SearchEngineTest {
 		
 		thrown.expect(Exception.class);
 		thrown.expectMessage("No imput for origin airport.");
-		sEngine.searchFlight(null, null, new Date(), 0, 0, 0);
+		sEngine.searchFlight(null, "XXX", new Date(), 1, 0, 0);
 	}
 	
 	@Test
@@ -46,7 +46,7 @@ public class SearchEngineTest {
 		
 		thrown.expect(Exception.class);
 		thrown.expectMessage("No imput for origin airport.");
-		sEngine.searchFlight("", null, new Date(), 0, 0, 0);
+		sEngine.searchFlight("", "XXX", new Date(), 1, 0, 0);
 	}
 	
 	@Test
@@ -56,7 +56,7 @@ public class SearchEngineTest {
 		
 		thrown.expect(Exception.class);
 		thrown.expectMessage("No imput for destination airport.");
-		sEngine.searchFlight("XXX", null, new Date(), 0, 0, 0);
+		sEngine.searchFlight("XXX", null, new Date(), 1, 0, 0);
 	}
 
 	@Test
@@ -66,7 +66,17 @@ public class SearchEngineTest {
 		
 		thrown.expect(Exception.class);
 		thrown.expectMessage("No imput for destination airport.");
-		sEngine.searchFlight("XXX", "", new Date(), 0, 0, 0);
+		sEngine.searchFlight("XXX", "", new Date(), 1, 0, 0);
+	}
+	
+	@Test
+	public void TestDateNoImput() throws Exception {
+		
+		SearchEngine sEngine = new SearchEngine();
+		
+		thrown.expect(Exception.class);
+		thrown.expectMessage("No imput for departure date.");
+		sEngine.searchFlight("XXX", "XXX", null, 1, 0, 0);
 	}
 	
 	@Test
@@ -79,7 +89,7 @@ public class SearchEngineTest {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
 		calendar.add(Calendar.DAY_OF_YEAR, -1);		
-		sEngine.searchFlight("XXX", "XXX", calendar.getTime(), 0, 0, 0);
+		sEngine.searchFlight("XXX", "XXX", calendar.getTime(), 1, 0, 0);
 	}
 	
 	@Test

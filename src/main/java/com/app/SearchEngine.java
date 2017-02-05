@@ -35,19 +35,31 @@ public class SearchEngine {
 		double basePrice = 0;
 		double finalPrice = 0;
 		double infantPrice = 0;
+		ArrayList<SearchResult> searchResults = null;
 		
 		// Comprobamos que se han introducido datos para el aeropuerto origen
 		if (origin == null || origin.isEmpty()) {
 			throw new Exception("No imput for origin airport.");
 		}
+		
 		// Comprobamos que se han introducido datos para el aeropuerto destino
 		if (destination == null || destination.isEmpty()) {
 			throw new Exception("No imput for destination airport.");
 		}
+		
 		// Comprobamos que la fecha introducida no es anterior a hoy
-		if (departureDate == null || checkDaysBetween(today,departureDate) < 0) {
+		if (departureDate == null) {
+			throw new Exception("No imput for departure date.");
+		}
+		
+		//Calculamos el numero de dias de diferencia entre hoy y la fecha de salida
+		long daysDifference = checkDaysBetween(today,departureDate);
+		
+		//Comprobamos que la fecha de salida es superior o igual a hoy
+		if (daysDifference < 0) {
 			throw new Exception("Date of depature has to be equal or greater than today.");
 		}
+		
 		// Comprobamos que se ha introducido un numero correcto de pasajeros
 		if (adultPassenger + childPassenger + infantPassenger <= 0) {
 			throw new Exception("The number of passengers has to be greater than 0.");
@@ -67,17 +79,12 @@ public class SearchEngine {
 		// Comprobamos si existe una conexion entre el aeropuerto de origen y el
 		// aeropuerto destino
 		ArrayList<FlightConnection> flightConnections = checkFlightConnections(airportOrigin, airportDestination);
-
-		ArrayList<SearchResult> searchResults = null;
 		
 		//Comprobamos que existe algun vuelo
 		if (!flightConnections.isEmpty()) {
 			
 			//Creamos un nuevo array de resultados de busqueda
 			searchResults = new ArrayList<SearchResult>();
-						
-			//Calculamos el numero de dias de diferencia entre hoy y la fecha de salida
-			long daysDifference = checkDaysBetween(today,departureDate);
 			
 			//Recorremos el array con los vuelos disponibles y calculamos el precio.
 			for (int i=0;i<flightConnections.size();i++) {
@@ -88,18 +95,22 @@ public class SearchEngine {
 				
 				FlightConnection flightAux = flightConnections.get(i);
 				
-				//Calculamos el sumplemento por fecha de vuelo 
+				// Calculamos el sumplemento por fecha de vuelo
 				if (daysDifference <= DAYS_PRICE_BOUNDRY_1) {
-					basePrice = flightAux.getPrice()*PRICE_BONUS_1;
+
+					basePrice = flightAux.getPrice() * PRICE_BONUS_1;
 				} else if (daysDifference > DAYS_PRICE_BOUNDRY_1 && daysDifference <= DAYS_PRICE_BOUNDRY_2) {
-					basePrice = flightAux.getPrice()*PRICE_BONUS_2;
+
+					basePrice = flightAux.getPrice() * PRICE_BONUS_2;
 				} else if (daysDifference > DAYS_PRICE_BOUNDRY_2 && daysDifference <= DAYS_PRICE_BOUNDRY_3) {
+
 					basePrice = flightAux.getPrice();
 				} else if (daysDifference > DAYS_PRICE_BOUNDRY_3) {
-					basePrice = flightAux.getPrice()*PRICE_BONUS_3;
+
+					basePrice = flightAux.getPrice() * PRICE_BONUS_3;
 				}
 				
-				//Comprobamos si hay pasajeros tipo Infant
+				//Comprobamos si hay pasajeros bebes
 				if (infantPassenger > 0) {
 					infantPrice = searchInfantPrice(flightAux);
 				}
@@ -113,6 +124,7 @@ public class SearchEngine {
 			
 			
 		} else {
+			//Si no existe ningun vuelo que conecte los aeropuertos devolvemos nulo
 			return null;
 		}
 
