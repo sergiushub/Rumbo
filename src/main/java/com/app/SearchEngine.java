@@ -38,17 +38,17 @@ public class SearchEngine {
 		
 		// Comprobamos que se han introducido datos para el aeropuerto origen
 		if (origin == null || origin.isEmpty()) {
-			throw new Exception("No imput for origin airport.");
+			throw new Exception("No input for origin airport.");
 		}
 		
 		// Comprobamos que se han introducido datos para el aeropuerto destino
 		if (destination == null || destination.isEmpty()) {
-			throw new Exception("No imput for destination airport.");
+			throw new Exception("No input for destination airport.");
 		}
 		
 		// Comprobamos que la fecha introducida no es anterior a hoy
 		if (departureDate == null) {
-			throw new Exception("No imput for departure date.");
+			throw new Exception("No input for departure date.");
 		}
 		
 		//Calculamos el numero de dias de diferencia entre hoy y la fecha de salida

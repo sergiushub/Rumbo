@@ -39,7 +39,7 @@ public class SearchEngineTest {
 		SearchEngine sEngine = new SearchEngine();
 		
 		thrown.expect(Exception.class);
-		thrown.expectMessage("No Input for origin airport.");
+		thrown.expectMessage("No input for origin airport.");
 		sEngine.searchFlight(null, "XXX", new Date(), 1, 0, 0);
 	}
 	
@@ -54,7 +54,7 @@ public class SearchEngineTest {
 		SearchEngine sEngine = new SearchEngine();
 		
 		thrown.expect(Exception.class);
-		thrown.expectMessage("No Input for origin airport.");
+		thrown.expectMessage("No input for origin airport.");
 		sEngine.searchFlight("", "XXX", new Date(), 1, 0, 0);
 	}
 	
@@ -70,7 +70,7 @@ public class SearchEngineTest {
 		SearchEngine sEngine = new SearchEngine();
 		
 		thrown.expect(Exception.class);
-		thrown.expectMessage("No Input for destination airport.");
+		thrown.expectMessage("No input for destination airport.");
 		sEngine.searchFlight("XXX", null, new Date(), 1, 0, 0);
 	}
 
@@ -85,7 +85,7 @@ public class SearchEngineTest {
 		SearchEngine sEngine = new SearchEngine();
 		
 		thrown.expect(Exception.class);
-		thrown.expectMessage("No Input for destination airport.");
+		thrown.expectMessage("No input for destination airport.");
 		sEngine.searchFlight("XXX", "", new Date(), 1, 0, 0);
 	}
 	
@@ -100,7 +100,7 @@ public class SearchEngineTest {
 		SearchEngine sEngine = new SearchEngine();
 		
 		thrown.expect(Exception.class);
-		thrown.expectMessage("No Input for departure date.");
+		thrown.expectMessage("No input for departure date.");
 		sEngine.searchFlight("XXX", "XXX", null, 1, 0, 0);
 	}
 	
