@@ -9,13 +9,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import com.data.Airline;
 import com.data.Airport;
@@ -168,6 +169,62 @@ public class SearchEngineTest {
 			fail(e.getMessage());
 		}
 		
+	}
+
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+
+	@Test
+	public void TestNoInputOriginAirport1() throws Exception {
+		
+		SearchEngine sEngine = new SearchEngine();
+		
+		thrown.expect(Exception.class);
+		thrown.expectMessage("No imput for origin airport.");
+		sEngine.searchFlight(null, null, new Date(), 0, 0, 0);
+	}
+	
+	@Test
+	public void TestNoInputOriginAirport2() throws Exception {
+		
+		SearchEngine sEngine = new SearchEngine();
+		
+		thrown.expect(Exception.class);
+		thrown.expectMessage("No imput for origin airport.");
+		sEngine.searchFlight("", null, new Date(), 0, 0, 0);
+	}
+	
+	@Test
+	public void TestNoInputDestinationAirport1() throws Exception {
+		
+		SearchEngine sEngine = new SearchEngine();
+		
+		thrown.expect(Exception.class);
+		thrown.expectMessage("No imput for destination airport.");
+		sEngine.searchFlight("XXX", null, new Date(), 0, 0, 0);
+	}
+
+	@Test
+	public void TestNoInputDestinationAirport2() throws Exception {
+		
+		SearchEngine sEngine = new SearchEngine();
+		
+		thrown.expect(Exception.class);
+		thrown.expectMessage("No imput for destination airport.");
+		sEngine.searchFlight("XXX", "", new Date(), 0, 0, 0);
+	}
+	
+	@Test
+	public void TestDateBefore() throws Exception {
+		
+		SearchEngine sEngine = new SearchEngine();
+		
+		thrown.expect(Exception.class);
+		thrown.expectMessage("Date of depature has to be equal or greater than today.");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		calendar.add(Calendar.DAY_OF_YEAR, 0);		
+		sEngine.searchFlight("XXX", "XXX", calendar.getTime(), 0, 0, 0);
 	}
 	
 	private void inputData(SearchEngine sEngine) {

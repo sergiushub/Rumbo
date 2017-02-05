@@ -46,7 +46,7 @@ public class SearchEngine {
 		}
 		// Comprobamos que la fecha introducida no es anterior a hoy
 		if (departureDate == null || departureDate.before(today)) {
-			throw new Exception("Date of depature has to greater than today.");
+			throw new Exception("Date of depature has to be equal or greater than today.");
 		}
 		// Comprobamos que se ha introducido un numero correcto de pasajeros
 		if (adultPassenger + childPassenger + infantPassenger <= 0) {
