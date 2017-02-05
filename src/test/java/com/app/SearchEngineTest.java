@@ -1,6 +1,7 @@
 package com.app;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
@@ -159,7 +160,7 @@ public class SearchEngineTest {
 			
 			sResult = sEngine.searchFlight("CDG", "FRA", calendar.getTime(), 1, 0, 0);
 
-			assertEquals("Test 3 - Opcion 1", null, sResult);
+			assertNull("Test 4 - No hay vuelos", sResult);
 			
 		} catch (ParseException e) {
 			fail(e.getMessage());
