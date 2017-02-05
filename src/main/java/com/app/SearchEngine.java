@@ -158,7 +158,6 @@ public class SearchEngine {
 		Date todayNoHours = sdf.parse(sdf.format(new Date()));
 		Date departureDateNoHours = sdf.parse(sdf.format(departureDate));
 		
-		//return ChronoUnit.DAYS.between(todayNoHours.toInstant(),departureDate.toInstant());
 		long diff = departureDateNoHours.getTime() - todayNoHours.getTime();
 		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 	}
@@ -221,13 +220,14 @@ public class SearchEngine {
 	/**
 	 * Metodo que devuelve el Objeto Airport o Nulo en caso de no existir en los datos proporcionados
 	 * 
-	 * @param airportOrigin Codigo del aeropuerto
+	 * @param airport Codigo del aeropuerto
 	 * @return Airport o nulo
 	 */
-	private Airport searchAirport(String airportOrigin) {
+	private Airport searchAirport(String airport) {
 
+		//Buscamos en el array de aeropuertos si existe el aeropuerto
 		for (int i = 0; i < this.airports.size(); i++) {
-			if (this.airports.get(i).getIataCode().compareTo(airportOrigin) == 0) {
+			if (this.airports.get(i).getIataCode().compareTo(airport) == 0) {
 				return this.airports.get(i);
 			}
 		}
